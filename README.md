@@ -12,8 +12,8 @@ El proyecto despliega la arquitectura **TALL Stack** combinada con entornos de d
 * **Frontend Interactivo:** Livewire 3 & Alpine.js
 * **Diseño y Estilos:** Tailwind CSS & DaisyUI (UI Component Framework)
 * **Entorno Local:** Laragon (Servidor Nginx/Apache + MySQL)
-* **Editor de Código:** Cursor ("Visual Studio Deidad")
-* **Gestor de Base de Datos:** DBeaver
+* **Editor de Código:** Cursor y Visual Studio Code
+* **Gestor de Base de Datos:** MySQL(Herramienta : DBeaver)
 
 ---
 
@@ -22,7 +22,7 @@ El proyecto despliega la arquitectura **TALL Stack** combinada con entornos de d
 El sistema se rige bajo el patrón arquitectónico **MVC (Modelo-Vista-Controlador)** optimizado para componentes reactivos:
 
 ```text
-mediacare/
+clinica/
 ├── app/
 │   ├── Http/Controllers/   # Controladores (Lógica intermedia)
 │   ├── Livewire/           # Componentes reactivos en PHP (Tablas, Buscadores)
