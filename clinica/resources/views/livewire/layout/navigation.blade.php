@@ -33,6 +33,18 @@ new class extends Component
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('pacientes.index')" :active="request()->routeIs('pacientes.*')" wire:navigate>
+                        {{ __('Patients') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('doctores.index')" :active="request()->routeIs('doctores.*')" wire:navigate>
+                        {{ __('Doctors') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('especialidades.index')" :active="request()->routeIs('especialidades.*')" wire:navigate>
+                        {{ __('Specialties') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('citas.index')" :active="request()->routeIs('citas.*')" wire:navigate>
+                        {{ __('Appointments') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -83,6 +95,18 @@ new class extends Component
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('pacientes.index')" :active="request()->routeIs('pacientes.*')" wire:navigate>
+                {{ __('Patients') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('doctores.index')" :active="request()->routeIs('doctores.*')" wire:navigate>
+                {{ __('Doctors') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('especialidades.index')" :active="request()->routeIs('especialidades.*')" wire:navigate>
+                {{ __('Specialties') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('citas.index')" :active="request()->routeIs('citas.*')" wire:navigate>
+                {{ __('Appointments') }}
             </x-responsive-nav-link>
         </div>
 
