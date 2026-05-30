@@ -1,0 +1,15 @@
+Los 4 Controladores obligatorios (Tienen vista propia):
+PacientesController: Para ver la lista de pacientes, registrarlos y editarlos.
+
+DoctoresController: Para gestionar al personal médico.
+
+EspecialidadesController: Para la lista de especialidades de la clínica.
+
+CitasController: La pantalla más importante, donde programas las fechas, horas y unes al paciente con el doctor.
+
+Las 2 tablas que NO necesitan controlador propio (Se manejan desde otros controladores):
+recetas: No necesita una pantalla aparte. La receta se crea y se ve dentro de la misma pantalla de la Cita. Su lógica se mete en el CitasController.
+
+pagos: Al igual que las recetas, el pago está amarrado a una cita. Puedes registrar el pago directamente desde la vista de la cita o con un botón rápido ahí mismo.
+
+Resumen: Solo crea 4 controladores en tu terminal Warp. ¡Con eso cubres todo el flujo del PDF perfectamente!
