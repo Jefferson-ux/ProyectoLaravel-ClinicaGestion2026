@@ -13,8 +13,7 @@ class DoctoresController extends Controller
     public function index(): View
     {
         $doctores = Doctor::with('especialidad')
-            ->orderBy('apellidos')
-            ->orderBy('nombres')
+            ->orderBy('id')
             ->get();
 
         return view('doctores.index', compact('doctores'));
@@ -52,7 +51,7 @@ class DoctoresController extends Controller
 
     public function show(string $id): View
     {
-        $doctor = Doctor::with(['especialidad', 'citas.paciente'])
+        $doctor = Doctor::with(['especialidad', 'citas' => fn ($query) => $query->orderBy('id'), 'citas.paciente'])
             ->findOrFail($id);
 
         return view('doctores.show', compact('doctor'));

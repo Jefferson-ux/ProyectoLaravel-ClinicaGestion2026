@@ -13,6 +13,7 @@
         "livewire/volt": "^1.7.0"
     },
     "require-dev": {
+        "crestapps/laravel-code-generator": "^3.0",
         "fakerphp/faker": "^1.23",
         "kitloong/laravel-migrations-generator": "^7.4",
         "laravel/breeze": "^2.4",

@@ -14,8 +14,7 @@ class CitasController extends Controller
     public function index(): View
     {
         $citas = Cita::with(['paciente', 'doctor.especialidad'])
-            ->orderByDesc('fecha')
-            ->orderBy('hora')
+            ->orderBy('id')
             ->get();
 
         return view('citas.index', compact('citas'));
@@ -59,7 +58,12 @@ class CitasController extends Controller
 
     public function show(string $id): View
     {
-        $cita = Cita::with(['paciente', 'doctor.especialidad', 'recetas', 'pagos'])
+        $cita = Cita::with([
+            'paciente',
+            'doctor.especialidad',
+            'recetas' => fn ($query) => $query->orderBy('id'),
+            'pagos' => fn ($query) => $query->orderBy('id'),
+        ])
             ->findOrFail($id);
 
         return view('citas.show', compact('cita'));

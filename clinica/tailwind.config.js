@@ -17,5 +17,10 @@ export default {
         },
     },
 
-    plugins: [forms, require('@tailwindcss/typography'), require('daisyui')],
+    plugins: [forms,
+        require('@tailwindcss/typography'),
+        require('daisyui')],                //🌟 Plugin de componentes activado🌟
+    daisyui: {
+        themes: ["light"],      // Fuerza el tema claro para el entorno médico
+    },
 };

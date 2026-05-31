@@ -49,11 +49,7 @@
                                         <td class="space-x-1 whitespace-nowrap">
                                             <a href="{{ route('citas.show', $cita->id) }}" class="btn btn-ghost btn-xs">{{ __('View') }}</a>
                                             <a href="{{ route('citas.edit', $cita->id) }}" class="btn btn-info btn-xs">{{ __('Edit') }}</a>
-                                            <form action="{{ route('citas.destroy', $cita->id) }}" method="POST" class="inline" onsubmit="return confirm('{{ __('Are you sure you want to delete this record?') }}')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-error btn-xs">{{ __('Delete') }}</button>
-                                            </form>
+                                            <x-delete-button :action="route('citas.destroy', $cita->id)" class="inline" />
                                         </td>
                                     </tr>
                                 @endforeach

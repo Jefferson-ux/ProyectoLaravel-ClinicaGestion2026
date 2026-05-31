@@ -13,54 +13,48 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="card bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h3 class="card-title">{{ $especialidad->nombre }}</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><span class="font-semibold">{{ __('ID') }}:</span> {{ $especialidad->id }}</div>
-                        <div><span class="font-semibold">{{ __('Status') }}:</span> <x-status-badge :active="(bool) $especialidad->estado" /></div>
-                        <div class="md:col-span-2"><span class="font-semibold">{{ __('Description') }}:</span> {{ $especialidad->descripcion ?? '—' }}</div>
-                    </div>
-                </div>
-            </div>
+            <x-detail-card :title="$especialidad->nombre">
+                <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <x-detail-field :label="__('ID')">{{ $especialidad->id }}</x-detail-field>
+                    <x-detail-field :label="__('Status')"><x-status-badge :active="(bool) $especialidad->estado" /></x-detail-field>
+                    <x-detail-field :label="__('Description')" :full-width="true">{{ $especialidad->descripcion ?? '—' }}</x-detail-field>
+                </dl>
+            </x-detail-card>
 
-            <div class="card bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h3 class="card-title mb-4">{{ __('Doctors in this specialty') }}</h3>
-                    <div class="overflow-x-auto">
-                        <table id="tabla-clinica" class="display w-full">
-                            <thead>
+            <x-detail-card :title="__('Doctors in this specialty')">
+                <div class="overflow-x-auto -mx-2 sm:mx-0 px-2 sm:px-0">
+                    <table id="tabla-clinica" class="display w-full">
+                        <thead>
+                            <tr>
+                                <th>{{ __('ID') }}</th>
+                                <th>{{ __('DNI') }}</th>
+                                <th>{{ __('Full Name') }}</th>
+                                <th>{{ __('Specialty ID') }}</th>
+                                <th>{{ __('Phone') }}</th>
+                                <th>{{ __('Email') }}</th>
+                                <th>{{ __('Status') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($especialidad->doctores as $doctor)
                                 <tr>
-                                    <th>{{ __('ID') }}</th>
-                                    <th>{{ __('DNI') }}</th>
-                                    <th>{{ __('Full Name') }}</th>
-                                    <th>{{ __('Specialty ID') }}</th>
-                                    <th>{{ __('Phone') }}</th>
-                                    <th>{{ __('Email') }}</th>
-                                    <th>{{ __('Status') }}</th>
+                                    <td>{{ $doctor->id }}</td>
+                                    <td>{{ $doctor->dni }}</td>
+                                    <td>{{ $doctor->nombres }} {{ $doctor->apellidos }}</td>
+                                    <td>{{ $doctor->id_especialidad }} — {{ $especialidad->nombre }}</td>
+                                    <td>{{ $doctor->telefono ?? '—' }}</td>
+                                    <td>{{ $doctor->correo ?? '—' }}</td>
+                                    <td><x-status-badge :active="(bool) $doctor->estado" /></td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($especialidad->doctores as $doctor)
-                                    <tr>
-                                        <td>{{ $doctor->id }}</td>
-                                        <td>{{ $doctor->dni }}</td>
-                                        <td>{{ $doctor->nombres }} {{ $doctor->apellidos }}</td>
-                                        <td>{{ $doctor->id_especialidad }} — {{ $especialidad->nombre }}</td>
-                                        <td>{{ $doctor->telefono ?? '—' }}</td>
-                                        <td>{{ $doctor->correo ?? '—' }}</td>
-                                        <td><x-status-badge :active="(bool) $doctor->estado" /></td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="7" class="text-center text-gray-500">{{ __('No doctors assigned to this specialty.') }}</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center text-gray-500 py-6">{{ __('No doctors assigned to this specialty.') }}</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+            </x-detail-card>
         </div>
     </div>
 </x-app-layout>

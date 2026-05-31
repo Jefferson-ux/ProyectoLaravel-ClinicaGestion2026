@@ -65,7 +65,7 @@
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'All']],
             autoWidth: false,
             width: '100%',
-            order: [],
+            order: [[0, 'asc']],
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/2.0.7/i18n/es-ES.json', // Español
             },

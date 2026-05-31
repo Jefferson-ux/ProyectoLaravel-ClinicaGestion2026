@@ -12,8 +12,7 @@ class PacientesController extends Controller
     public function index(): View
     {
         $pacientes = Paciente::withCount('citas')
-            ->orderBy('apellidos')
-            ->orderBy('nombres')
+            ->orderBy('id')
             ->get();
 
         return view('pacientes.index', compact('pacientes'));
@@ -48,7 +47,7 @@ class PacientesController extends Controller
 
     public function show(string $id): View
     {
-        $paciente = Paciente::with(['citas.doctor.especialidad'])
+        $paciente = Paciente::with(['citas' => fn ($query) => $query->orderBy('id'), 'citas.doctor.especialidad'])
             ->findOrFail($id);
 
         return view('pacientes.show', compact('paciente'));

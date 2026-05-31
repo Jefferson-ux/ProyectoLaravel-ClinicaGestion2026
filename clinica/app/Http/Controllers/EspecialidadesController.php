@@ -12,7 +12,7 @@ class EspecialidadesController extends Controller
     public function index(): View
     {
         $especialidades = Especialidad::withCount('doctores')
-            ->orderBy('nombre')
+            ->orderBy('id')
             ->get();
 
         return view('especialidades.index', compact('especialidades'));
@@ -42,7 +42,7 @@ class EspecialidadesController extends Controller
 
     public function show(string $id): View
     {
-        $especialidad = Especialidad::with('doctores')
+        $especialidad = Especialidad::with(['doctores' => fn ($query) => $query->orderBy('id')])
             ->findOrFail($id);
 
         return view('especialidades.show', compact('especialidad'));
