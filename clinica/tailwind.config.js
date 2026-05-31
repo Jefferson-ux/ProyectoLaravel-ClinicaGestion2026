@@ -18,9 +18,14 @@ export default {
     },
 
     plugins: [forms,
-        require('@tailwindcss/typography'),
         require('daisyui')],                //🌟 Plugin de componentes activado🌟
+    // 🌟 CONFIGURACIÓN CORRECTA DE TEMAS 🌟
     daisyui: {
-        themes: ["light"],      // Fuerza el tema claro para el entorno médico
+        themes: [
+            "light",       // Tema claro base
+            "dark",        // Tema oscuro base
+            "synthwave",   // El tema que quieres probar en tu controlador
+            "luxury"       // ¡Este te va a encantar! (Es negro, carbón y oro nativo)
+        ],
     },
 };

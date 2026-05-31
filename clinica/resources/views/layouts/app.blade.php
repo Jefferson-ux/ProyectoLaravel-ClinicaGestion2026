@@ -54,6 +54,11 @@
             return;
         }
 
+
+
+
+
+
         new DataTable('#tabla-clinica', {
             layout: {
                 topStart: 'pageLength',
@@ -62,7 +67,7 @@
                 bottomEnd: 'paging',
             },
             pageLength: 10,
-            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'All']],
+            lengthMenu: [[5,10, 25, 50, -1], [5,10, 25, 50, 'All']],
             autoWidth: false,
             width: '100%',
             order: [[0, 'asc']],

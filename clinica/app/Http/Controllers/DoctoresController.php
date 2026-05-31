@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concerns\ManagesMasterRecords;
 use App\Models\Doctor;
 use App\Models\Especialidad;
 use Illuminate\Http\RedirectResponse;
@@ -10,13 +11,21 @@ use Illuminate\View\View;
 
 class DoctoresController extends Controller
 {
-    public function index(): View
+    use ManagesMasterRecords;
+
+    public function index(Request $request): View
     {
-        $doctores = Doctor::with('especialidad')
+        $doctores = $this->applyActiveFilter(
+            Doctor::with('especialidad'),
+            $request
+        )
             ->orderBy('id')
             ->get();
 
-        return view('doctores.index', compact('doctores'));
+        return view('doctores.index', [
+            'doctores' => $doctores,
+            'verInactivos' => $request->boolean('ver_inactivos'),
+        ]);
     }
 
     public function create(): View
@@ -94,10 +103,14 @@ class DoctoresController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         $doctor = Doctor::findOrFail($id);
-        $doctor->delete();
 
-        return redirect()
-            ->route('doctores.index')
-            ->with('success', 'Doctor eliminado correctamente.');
+        return $this->deactivateRecord($doctor, 'doctores.index', __('doctor'));
+    }
+
+    public function restore(string $id): RedirectResponse
+    {
+        $doctor = Doctor::findOrFail($id);
+
+        return $this->restoreRecord($doctor, 'doctores.index', __('doctor'));
     }
 }

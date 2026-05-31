@@ -42,8 +42,14 @@ new class extends Component
                     <x-nav-link :href="route('especialidades.index')" :active="request()->routeIs('especialidades.*')" wire:navigate>
                         {{ __('Specialties') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('citas.index')" :active="request()->routeIs('citas.*')" wire:navigate>
+                    <x-nav-link :href="route('citas.index')" :active="request()->routeIs('citas.index') || request()->routeIs('citas.show') || request()->routeIs('citas.create') || request()->routeIs('citas.edit')" wire:navigate>
                         {{ __('Appointments') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('citas.recetas')" :active="request()->routeIs('citas.recetas*')" wire:navigate>
+                        {{ __('Prescriptions') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('citas.pagos')" :active="request()->routeIs('citas.pagos*')" wire:navigate>
+                        {{ __('Cash audit') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -105,8 +111,14 @@ new class extends Component
             <x-responsive-nav-link :href="route('especialidades.index')" :active="request()->routeIs('especialidades.*')" wire:navigate>
                 {{ __('Specialties') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('citas.index')" :active="request()->routeIs('citas.*')" wire:navigate>
+            <x-responsive-nav-link :href="route('citas.index')" :active="request()->routeIs('citas.index')" wire:navigate>
                 {{ __('Appointments') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('citas.recetas')" :active="request()->routeIs('citas.recetas*')" wire:navigate>
+                {{ __('Prescriptions') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('citas.pagos')" :active="request()->routeIs('citas.pagos*')" wire:navigate>
+                {{ __('Cash audit') }}
             </x-responsive-nav-link>
         </div>
 

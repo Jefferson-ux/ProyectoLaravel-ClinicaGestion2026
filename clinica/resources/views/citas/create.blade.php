@@ -51,17 +51,9 @@
                                 @error('hora')<span class="text-error text-sm mt-1">{{ $message }}</span>@enderror
                             </div>
 
-                            <div class="form-control w-full">
-                                <label class="label" for="estado"><span class="label-text">{{ __('Status') }}</span></label>
-                                <select id="estado" name="estado" class="select select-bordered w-full @error('estado') select-error @enderror">
-                                    <option value="PENDIENTE" {{ old('estado', 'PENDIENTE') === 'PENDIENTE' ? 'selected' : '' }}>{{ __('Pending') }}</option>
-                                    <option value="CONFIRMADA" {{ old('estado') === 'CONFIRMADA' ? 'selected' : '' }}>{{ __('Confirmed') }}</option>
-                                    <option value="COMPLETADA" {{ old('estado') === 'COMPLETADA' ? 'selected' : '' }}>{{ __('Completed') }}</option>
-                                    <option value="CANCELADA" {{ old('estado') === 'CANCELADA' ? 'selected' : '' }}>{{ __('Cancelled') }}</option>
-                                </select>
-                                @error('estado')<span class="text-error text-sm mt-1">{{ $message }}</span>@enderror
-                            </div>
                         </div>
+
+                        <p class="text-sm text-gray-500">{{ __('New appointments are created with status PENDIENTE.') }}</p>
 
                         <div class="form-control w-full">
                             <label class="label" for="motivo"><span class="label-text">{{ __('Reason') }}</span></label>

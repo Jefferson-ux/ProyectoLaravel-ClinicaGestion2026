@@ -4,9 +4,12 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Patients') }}
             </h2>
-            <a href="{{ route('pacientes.create') }}" class="btn btn-primary btn-sm">
-                {{ __('Add Patient') }}
-            </a>
+            <div class="flex flex-wrap gap-2">
+                <x-toggle-inactivos :index-route="route('pacientes.index')" />
+                <a href="{{ route('pacientes.create') }}" class="btn btn-primary btn-sm">
+                    {{ __('Add Patient') }}
+                </a>
+            </div>
         </div>
     </x-slot>
 
@@ -14,9 +17,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-flash-success />
 
+            @if ($verInactivos)
+                <div class="alert alert-info mb-4 shadow-sm">
+                    <span>{{ __('Showing active and inactive records.') }}</span>
+                </div>
+            @endif
+
             <div class="card bg-base-100 shadow-xl">
                 <div class="card-body">
-                    <div style="overflow-x: auto; padding: 15px 20px;">
+                    <div class="overflow-x-auto px-4 py-4 sm:px-5">
                         <table id="tabla-clinica" class="display w-full">
                             <thead>
                                 <tr>
@@ -33,7 +42,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($pacientes as $paciente)
-                                    <tr>
+                                    <tr @class(['opacity-60' => ! $paciente->estado])>
                                         <td>{{ $paciente->id }}</td>
                                         <td>{{ $paciente->dni }}</td>
                                         <td>{{ $paciente->nombres }} {{ $paciente->apellidos }}</td>
@@ -42,10 +51,14 @@
                                         <td>{{ $paciente->correo ?? '—' }}</td>
                                         <td>{{ $paciente->citas_count }}</td>
                                         <td><x-status-badge :active="(bool) $paciente->estado" /></td>
-                                        <td class="space-x-1 whitespace-nowrap">
-                                            <a href="{{ route('pacientes.show', $paciente->id) }}" class="btn btn-ghost btn-xs">{{ __('View') }}</a>
-                                            <a href="{{ route('pacientes.edit', $paciente->id) }}" class="btn btn-info btn-xs">{{ __('Edit') }}</a>
-                                            <x-delete-button :action="route('pacientes.destroy', $paciente->id)" class="inline" />
+                                        <td>
+                                            <x-master-actions
+                                                :record="$paciente"
+                                                :show-route="route('pacientes.show', $paciente->id)"
+                                                :edit-route="route('pacientes.edit', $paciente->id)"
+                                                :destroy-route="route('pacientes.destroy', $paciente->id)"
+                                                :restore-route="route('pacientes.restore', $paciente->id)"
+                                            />
                                         </td>
                                     </tr>
                                 @endforeach
