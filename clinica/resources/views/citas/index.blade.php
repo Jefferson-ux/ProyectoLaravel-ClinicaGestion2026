@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Appointments') }}
+                <i class="fa-solid fa-book-medical"></i> {{ __('Appointments') }}
             </h2>
             <div class="flex flex-wrap gap-2">
                 <a href="{{ route('citas.recetas') }}" class="btn btn-outline btn-sm">{{ __('All prescriptions') }}</a>
@@ -80,15 +80,16 @@
                                             >{{ __('Summary') }}</button>
                                             <a href="{{ route('citas.show', $cita->id) }}" class="btn btn-ghost btn-xs">{{ __('View') }}</a>
                                             <a href="{{ route('citas.edit', $cita->id) }}" class="btn btn-info btn-xs">{{ __('Edit') }}</a>
-                                            @if ($cita->estado !== 'CANCELADO')
-                                                <x-confirm-deactivate
-                                                    :action="route('citas.destroy', $cita->id)"
-                                                    :label="__('Cancel')"
-                                                    :confirm-label="__('Cancel appointment')"
-                                                    class="inline"
-                                                    :message="__('The appointment will be marked as CANCELADO and associated payments will be voided (ANULADO).')"
-                                                />
-                                            @endif
+                                            <x-confirm-deactivate
+                                            :action="route('citas.destroy', $cita->id)"
+                                            :label="__('Cancel')"
+                                            :confirm-label="__('Cancel appointment')"
+                                            class="inline"
+                                            :message="__('The appointment will be marked as CANCELADO and associated payments will be voided (ANULADO).')"
+
+                                            {{-- 🌟 PASAMOS EL ESTADO DISABLED SI YA ESTÁ CANCELADO --}}
+                                            :disabled="$cita->estado === 'CANCELADO'"
+                                        />
                                         </td>
                                     </tr>
                                 @endforeach

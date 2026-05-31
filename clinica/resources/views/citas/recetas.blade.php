@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Prescriptions audit') }}
+                <i class="fa-solid fa-capsules"></i> {{ __('Prescriptions audit') }}
             </h2>
             <a href="{{ route('citas.index') }}" class="btn btn-ghost btn-sm">{{ __('Back to appointments') }}</a>
         </div>
@@ -26,7 +26,7 @@
                                     <th>{{ __('Doctor') }}</th>
                                     <th>{{ __('Description') }}</th>
                                     <th>{{ __('Medications') }}</th>
-                                    <th>{{ __('Appointment status') }}</th>
+                                    <th>{{ __('Appointment Status') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>

@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Patients') }}
+                <i class="fa-solid fa-hospital-user"></i> {{ __('Patients') }}
             </h2>
             <div class="flex flex-wrap gap-2">
                 <x-toggle-inactivos :index-route="route('pacientes.index')" />

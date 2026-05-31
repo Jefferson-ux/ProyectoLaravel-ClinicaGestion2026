@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Cash audit — All payments') }}
+                <i class="fa-solid fa-hand-holding-dollar"></i> {{ __('Cash audit — All payments') }}
             </h2>
             <a href="{{ route('citas.index') }}" class="btn btn-ghost btn-sm">{{ __('Back to appointments') }}</a>
         </div>
@@ -15,7 +15,7 @@
 
             @if (auth()->user()->rol !== 'admin')
                 <div class="alert alert-warning mb-4 shadow-sm">
-                    <span>{{ __('Voiding payments is restricted to administrators.') }}</span>
+                    <span> <i class="fa-solid fa-triangle-exclamation"></i> - {{ __('Voiding payments is restricted to administrators.') }}</span>
                 </div>
             @endif
 
