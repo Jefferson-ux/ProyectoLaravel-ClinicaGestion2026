@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('direccion')->nullable();
             $table->string('correo', 100)->nullable();
             $table->tinyInteger('estado')->nullable()->default(1);
+            $table->timestamps();
         });
     }
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('correo', 100)->nullable()->unique('correo');
             $table->integer('id_especialidad')->nullable()->index('fk_doctor_especialidad');
             $table->tinyInteger('estado')->nullable()->default(1);
+            $table->timestamps();
         });
     }
 

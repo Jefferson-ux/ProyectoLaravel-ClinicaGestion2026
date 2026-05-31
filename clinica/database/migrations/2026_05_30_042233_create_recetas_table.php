@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->text('medicamentos')->nullable();
             $table->text('recomendaciones')->nullable();
+            $table->timestamps();
         });
     }
 

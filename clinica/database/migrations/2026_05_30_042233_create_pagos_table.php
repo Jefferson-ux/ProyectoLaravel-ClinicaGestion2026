@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('fecha_pago')->nullable();
             $table->string('metodo_pago', 50)->nullable();
             $table->string('estado', 20)->nullable()->default('PAGADO');
+            $table->timestamps();
         });
     }
 

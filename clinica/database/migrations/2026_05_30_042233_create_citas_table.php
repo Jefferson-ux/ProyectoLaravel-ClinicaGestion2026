@@ -19,6 +19,7 @@ return new class extends Migration
             $table->time('hora');
             $table->string('motivo')->nullable();
             $table->string('estado', 20)->nullable()->default('PENDIENTE');
+            $table->timestamps();
         });
     }
 
