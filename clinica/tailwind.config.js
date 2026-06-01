@@ -23,9 +23,7 @@ export default {
     daisyui: {
         themes: [
             "light",       // Tema claro base
-            "dark",        // Tema oscuro base
-            "synthwave",   // El tema que quieres probar en tu controlador
-            "luxury"       // ¡Este te va a encantar! (Es negro, carbón y oro nativo)
+            "dark"        // Tema oscuro base
         ],
     },
 };

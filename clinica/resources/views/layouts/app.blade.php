@@ -15,10 +15,22 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         {{-- Base DataTables 2 (sin integración Tailwind; los estilos se personalizan en public/css/custom-datatables.css) --}}
-        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.css">
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.tailwindcss.css">
+
         <link rel="stylesheet" href="{{ asset('css/custom-datatables.css') }}">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+        <!-- Ejemplos -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.3/css/bulma.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.bulma.css">
+
+
+
+
 
         @stack('styles')
     </head>
@@ -42,8 +54,23 @@
         </div>
 
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-        <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
-        <script src="https://cdn.datatables.net/2.0.7/js/dataTables.tailwindcss.js"></script>
+
+        <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
+
+        <script src="https://cdn.datatables.net/2.3.8/js/dataTables.tailwindcss.js"></script>
+
+
+
+
+
+
+        <!--//! Ejemplos -->
+        <script src="https://cdn.datatables.net/2.3.8/js/dataTables.bulma.js"></script>
+
+
+
+
+
 
         <script>
     // 1. Creamos una función reutilizable para inicializar la tabla
@@ -55,18 +82,15 @@
             return;
         }
 
-
-
-
-
-
         new DataTable('#tabla-clinica', {
+            theme: 'tailwindcss',
             layout: {
                 topStart: 'pageLength',
                 topEnd: 'search',
-                bottomStart: 'info',
+                bottomStart:'info',
                 bottomEnd: 'paging',
             },
+
             pageLength: 10,
             lengthMenu: [[5,10, 25, 50, -1], [5,10, 25, 50, 'All']],
             autoWidth: false,
@@ -74,6 +98,12 @@
             order: [[0, 'asc']],
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/2.0.7/i18n/es-ES.json', // Español
+                paginate: {
+                first: '<<',
+                previous: '<',
+                next: '>',
+                last: '>>'
+            }
             },
         });
     }
