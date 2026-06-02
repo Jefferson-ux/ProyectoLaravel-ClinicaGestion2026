@@ -10,8 +10,289 @@
 
 @theme {
     --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Paleta clínica: pasteles + acentos oscuros */
+    --color-clinic-cream: #f8fffe;
+    --color-clinic-mint: #e6fffa;
+    --color-clinic-cyan-pastel: #cffafe;
+    --color-clinic-turquoise-pastel: #b2f5ea;
+    --color-clinic-surface: #ffffff;
+    --color-clinic-navy: #1e3a5f;
+    --color-clinic-purple-dark: #3b0764;
+    --color-clinic-ink: #0f172a;
+    --color-clinic-muted: #475569;
+    --color-clinic-accent: #0891b2;
+    --color-clinic-accent-hover: #0e7490;
+
+    --shadow-clinic-sm: 0 1px 3px rgba(30, 58, 95, 0.08), 0 1px 2px rgba(59, 7, 100, 0.06);
+    --shadow-clinic-md: 0 4px 14px rgba(30, 58, 95, 0.1), 0 2px 6px rgba(59, 7, 100, 0.08);
+    --shadow-clinic-lg: 0 10px 28px rgba(30, 58, 95, 0.12), 0 4px 12px rgba(59, 7, 100, 0.1);
 }
 
 [x-cloak] {
     display: none !important;
+}
+
+/* Fondo general de la aplicación autenticada */
+.clinic-app-shell {
+    background-color: #ffffff;
+}
+
+.clinic-main-content {
+    background-color: #ffffff;
+}
+
+/* Inputs: padding vertical explícito para evitar texto pegado arriba */
+.clinic-input,
+input.clinic-input,
+select.clinic-input,
+textarea.clinic-input {
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Botones con micro-interacciones */
+.clinic-btn-primary {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.clinic-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-clinic-md);
+}
+
+.clinic-btn-primary:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.clinic-btn-secondary {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.clinic-btn-secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-clinic-sm);
+}
+
+.clinic-btn-secondary:active {
+    transform: scale(0.98);
+}
+
+/* Sidebar: animación de entrada en móvil */
+.clinic-sidebar {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.clinic-sidebar-backdrop {
+    transition: opacity 0.3s ease;
+}
+
+/* Enlaces del menú lateral */
+.clinic-nav-link {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.clinic-nav-link:hover {
+    padding-left: 1.25rem;
+}
+
+/* Cards */
+.clinic-card {
+    background: linear-gradient(145deg, var(--color-clinic-surface) 0%, var(--color-clinic-mint) 100%);
+    box-shadow: var(--shadow-clinic-md);
+    border: 1px solid color-mix(in srgb, var(--color-clinic-turquoise-pastel) 60%, transparent);
+}
+
+/* Cabecera de página (fondo blanco con borde sutil) */
+.clinic-page-header {
+    background: #ffffff;
+    box-shadow: var(--shadow-clinic-sm);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-clinic-turquoise-pastel) 65%, transparent);
+}
+
+.clinic-page-header h2,
+.clinic-page-header .font-semibold {
+    color: var(--color-clinic-navy);
+}
+
+/* DaisyUI: padding en inputs, selects y textareas del proyecto */
+.input.input-bordered,
+.select.select-bordered,
+.textarea.textarea-bordered {
+    padding-top: 0.625rem !important;
+    padding-bottom: 0.625rem !important;
+    min-height: 2.75rem;
+    line-height: 1.5;
+    border-color: color-mix(in srgb, var(--color-clinic-turquoise-pastel) 70%, #94a3b8) !important;
+    color: var(--color-clinic-ink);
+}
+
+.input.input-bordered:focus,
+.select.select-bordered:focus,
+.textarea.textarea-bordered:focus {
+    border-color: var(--color-clinic-accent) !important;
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-clinic-accent) 25%, transparent);
+}
+
+/* Tablas CRUD: card contenedor blanco */
+.card.bg-base-100,
+.clinic-table-card {
+    background: #ffffff !important;
+    border: 1px solid color-mix(in srgb, var(--color-clinic-turquoise-pastel) 50%, transparent);
+    box-shadow: var(--shadow-clinic-md);
+}
+
+/* Tabla clínica: texto compacto + cyan pastel / header contrastado */
+.clinic-table-wrap {
+    padding: 1rem 1.25rem;
+}
+
+table.clinic-data-table,
+#tabla-clinica {
+    font-size: 0.75rem !important;
+    line-height: 1.35 !important;
+    width: 100% !important;
+}
+
+table.clinic-data-table thead th,
+#tabla-clinica thead th {
+    background: linear-gradient(180deg, var(--color-clinic-navy) 0%, var(--color-clinic-purple-dark) 100%) !important;
+    color: #ffffff !important;
+    font-size: 0.6875rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.55rem 0.4rem !important;
+    border-bottom: 2px solid var(--color-clinic-accent) !important;
+    white-space: nowrap;
+}
+
+table.clinic-data-table tbody td,
+#tabla-clinica tbody td {
+    background-color: var(--color-clinic-mint) !important;
+    color: var(--color-clinic-ink) !important;
+    padding: 0.45rem 0.4rem !important;
+    vertical-align: middle !important;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-clinic-turquoise-pastel) 45%, transparent) !important;
+}
+
+table.clinic-data-table tbody tr:nth-child(even) td,
+#tabla-clinica tbody tr:nth-child(even) td {
+    background-color: var(--color-clinic-cyan-pastel) !important;
+}
+
+table.clinic-data-table tbody tr:hover td,
+#tabla-clinica tbody tr:hover td {
+    background-color: var(--color-clinic-turquoise-pastel) !important;
+}
+
+table.clinic-data-table .badge,
+#tabla-clinica .badge {
+    font-size: 0.625rem !important;
+    padding: 0.2rem 0.45rem !important;
+    min-height: auto !important;
+    height: auto !important;
+}
+
+table.clinic-data-table .btn-xs,
+#tabla-clinica .btn-xs {
+    min-height: 1.65rem !important;
+    height: 1.65rem !important;
+    font-size: 0.6875rem !important;
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
+}
+
+/* Paneles de formulario citas */
+.clinic-form-panel {
+    background: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--color-clinic-turquoise-pastel) 55%, transparent);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-clinic-md);
+    padding: 1.5rem 1.75rem;
+}
+
+@media (min-width: 640px) {
+    .clinic-form-panel {
+        padding: 2rem 2.25rem;
+    }
+}
+
+.clinic-form-panel .label-text,
+.clinic-form-panel label {
+    color: var(--color-clinic-navy);
+    font-weight: 500;
+}
+
+.clinic-form-section {
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-clinic-accent) 30%, transparent);
+    background: linear-gradient(145deg, var(--color-clinic-mint) 0%, var(--color-clinic-cyan-pastel) 100%);
+    padding: 1.25rem 1.5rem;
+}
+
+.clinic-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-clinic-turquoise-pastel) 60%, transparent);
+}
+
+/* Modal resumen cita */
+.clinic-modal-box {
+    background: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--color-clinic-turquoise-pastel) 50%, transparent);
+    box-shadow: var(--shadow-clinic-lg);
+    padding: 1.75rem 2rem !important;
+    max-width: 32rem;
+}
+
+.clinic-modal-box .clinic-modal-section {
+    background: var(--color-clinic-mint);
+    border-radius: 0.5rem;
+    padding: 0.875rem 1rem;
+    border: 1px solid color-mix(in srgb, var(--color-clinic-turquoise-pastel) 40%, transparent);
+}
+
+/* Tarjetas dashboard */
+.clinic-stat-card {
+    background: linear-gradient(135deg, #ffffff 0%, var(--color-clinic-cyan-pastel) 100%);
+    border: 1px solid color-mix(in srgb, var(--color-clinic-turquoise-pastel) 55%, transparent);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    box-shadow: var(--shadow-clinic-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clinic-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-clinic-lg);
+}
+
+.clinic-dashboard-panel {
+    background: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--color-clinic-turquoise-pastel) 50%, transparent);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-clinic-md);
+}
+
+/* Botones DaisyUI en listados */
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-clinic-accent), var(--color-clinic-navy)) !important;
+    border: none !important;
+    color: #fff !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-clinic-md);
 }

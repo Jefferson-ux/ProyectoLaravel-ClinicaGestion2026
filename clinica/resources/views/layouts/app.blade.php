@@ -28,29 +28,26 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.3/css/bulma.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.bulma.css">
 
-
-
-
-
         @stack('styles')
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="font-sans antialiased text-clinic-ink">
+        <div class="clinic-app-shell min-h-screen">
             <livewire:layout.navigation />
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+            {{-- Contenido principal desplazado por sidebar (lg) y topbar --}}
+            <div class="lg:pl-64 pt-16 min-h-screen flex flex-col">
+                @if (isset($header))
+                    <header class="clinic-page-header">
+                        <div class="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8 text-clinic-navy">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endif
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                <main class="flex-1 clinic-main-content">
+                    {{ $slot }}
+                </main>
+            </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -59,25 +56,13 @@
 
         <script src="https://cdn.datatables.net/2.3.8/js/dataTables.tailwindcss.js"></script>
 
-
-
-
-
-
         <!--//! Ejemplos -->
         <script src="https://cdn.datatables.net/2.3.8/js/dataTables.bulma.js"></script>
 
-
-
-
-
-
         <script>
-    // 1. Creamos una función reutilizable para inicializar la tabla
     function initDataTable() {
         const table = document.getElementById('tabla-clinica');
 
-        // Si la tabla no existe en esta página o DataTables ya está activo, no hacemos nada
         if (!table || typeof DataTable === 'undefined' || $.fn.DataTable.isDataTable('#tabla-clinica')) {
             return;
         }
@@ -94,12 +79,11 @@
             pageLength: 10,
             lengthMenu: [[5,10, 25, 50, -1], [5,10, 25, 50, 'All']],
 
-
             autoWidth: false,
             width: '100%',
             order: [[0, 'asc']],
             language: {
-                url: 'https://cdn.datatables.net/plug-ins/2.0.7/i18n/es-ES.json', // Español
+                url: 'https://cdn.datatables.net/plug-ins/2.0.7/i18n/es-ES.json',
                 paginate: {
                 first: '<<',
                 previous: '<',
@@ -110,10 +94,7 @@
         });
     }
 
-    // 2. Ejecutar cuando la página carga por primera vez (F5)
     document.addEventListener('DOMContentLoaded', initDataTable);
-
-    // 3. Ejecutar CADA VEZ que Livewire cambia de página sin recargar
     document.addEventListener('livewire:navigated', initDataTable);
 </script>
 

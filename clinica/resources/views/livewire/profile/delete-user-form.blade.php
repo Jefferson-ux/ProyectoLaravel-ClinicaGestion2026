@@ -70,7 +70,7 @@ new class extends Component
                     {{ __('Cancel') }}
                 </x-secondary-button>
 
-                <x-danger-button class="ms-3">
+                <x-danger-button class="ms-3 bg-red-600 hover:bg-red-700">
                     {{ __('Delete Account') }}
                 </x-danger-button>
             </div>

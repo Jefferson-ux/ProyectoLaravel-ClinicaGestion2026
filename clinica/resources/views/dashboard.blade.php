@@ -1,97 +1,100 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-bold text-xl text-yellow-500  leading-tight font-sans tracking-wide">
-            <i class="fa-solid fa-hospital"></i> {{ __('Panel de Control — MedaCare') }}
+        <h2 class="font-bold text-xl leading-tight tracking-wide">
+            <i class="fa-solid fa-hospital text-clinic-accent"></i> {{ __('Panel de Control — MedaCare') }}
         </h2>
     </x-slot>
 
-    <div class="py-8 bg-[#ffffff] min-h-screen">
-
+    <div class="py-8 min-h-screen bg-white">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
 
-            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#dadada] to-[#a8a8a8] p-6 text-black border bg-slate-200 shadow-2xl">
+            <div class="relative overflow-hidden rounded-2xl border border-clinic-turquoise-pastel/60 bg-gradient-to-r from-clinic-cyan-pastel/40 via-white to-clinic-mint/50 p-6 shadow-[var(--shadow-clinic-md)]">
                 <div class="relative z-10 max-w-xl">
-                    <h3 class="text-2xl font-bold tracking-tight text-black sm:text-3xl">
-                        Bienvenido de vuelta, <span class=" text-[#ff4444]">{{ auth()->user()->name ?? 'Administrador' }} ‼️</span>
+                    <h3 class="text-2xl font-bold tracking-tight text-clinic-navy sm:text-3xl">
+                        Bienvenido de vuelta, <span class="text-clinic-accent">{{ auth()->user()->name ?? 'Administrador' }}</span>
                     </h3>
-                    <p class="mt-2 text-md text-gray-800">
+                    <p class="mt-2 text-sm text-clinic-muted">
                         El sistema médico está operando con normalidad. Aquí tienes el balance general y el estado de la agenda de la clínica para hoy.
                     </p>
                 </div>
-                <div class="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-[#D4AF37]/5 to-transparent pointer-events-none"></div>
             </div>
 
             @php
-                // Consultas rápidas directo en la vista para evitar configurar controladores extra
                 $totalPacientes = DB::table('pacientes')->where('estado', 1)->count();
                 $totalDoctores = DB::table('doctores')->where('estado', 1)->count();
                 $citasPendientes = DB::table('citas')->where('estado', 'PENDIENTE')->count();
                 $ingresosCaja = DB::table('pagos')->where('estado', 'PAGADO')->sum('monto');
             @endphp
 
-            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                <div class="bg-[#1A1A1E] border bg-slate-200 rounded-xl p-5 shadow-lg flex items-center justify-between">
-                    <div>
-                        <p class="text-xs font-semibold uppercase tracking-wider text-gray-500">Pacientes Activos</p>
-                        <p class="text-3xl font-bold text-black mt-1 font-mono">{{ $totalPacientes }}</p>
-                    </div>
-                    <div class="p-3 bg-slate-200 text-[#D4AF37] rounded-lg border border-[#D4AF37]/20">
-                        <i class="fa-solid fa-user-injured text-xl w-6 text-center"></i>
-                    </div>
-                </div>
+{{-- Optimización Responsiva Transicional: Móvil (1) → Tablet/Mediano (2) → Desktop (4) --}}
+<div class="card-grid">
 
-                <div class="bg-[#1A1A1E] border bg-slate-200 rounded-xl p-5 shadow-lg flex items-center justify-between">
-                    <div>
-                        <p class="text-xs font-semibold uppercase tracking-wider text-gray-500">Staff Médico</p>
-                        <p class="text-3xl font-bold text-black mt-1 font-mono">{{ $totalDoctores }}</p>
-                    </div>
-                    <div class="p-3 bg-slate-200 text-[#D4AF37] rounded-lg border border-[#D4AF37]/20">
-                        <i class="fa-solid fa-user-md text-xl w-6 text-center"></i>
-                    </div>
-                </div>
+    <!-- Tarjeta: Pacientes Activos -->
+    <div class="clinic-stat-card flex items-center justify-between p-5 bg-white rounded-xl border border-clinic-turquoise-pastel/50 shadow-sm hover:shadow-md transition-all duration-300">
+        <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-clinic-muted">Pacientes Activos</p>
+            <p class="text-3xl font-bold text-clinic-navy mt-1 font-mono">{{ $totalPacientes }}</p>
+        </div>
+        <div class="p-3 rounded-lg bg-clinic-cyan-pastel/60 text-clinic-accent border border-clinic-accent/20">
+            <i class="fa-solid fa-user-injured text-xl w-6 text-center"></i>
+        </div>
+    </div>
 
-                <div class="bg-[#1A1A1E] border bg-slate-200 rounded-xl p-5 shadow-lg flex items-center justify-between">
-                    <div>
-                        <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 font-sans">Citas Pendientes</p>
-                        <p class="text-3xl font-bold text-black mt-1 font-mono">{{ $citasPendientes }}</p>
-                    </div>
-                    <div class="p-3 bg-slate-200 text-amber-500 rounded-lg border border-amber-500/20">
-                        <i class="fa-solid fa-calendar-check text-xl w-6 text-center"></i>
-                    </div>
-                </div>
+    <!-- Tarjeta: Staff Médico -->
+    <div class="clinic-stat-card flex items-center justify-between p-5 bg-white rounded-xl border border-clinic-turquoise-pastel/50 shadow-sm hover:shadow-md transition-all duration-300">
+        <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-clinic-muted">Staff Médico</p>
+            <p class="text-3xl font-bold text-clinic-navy mt-1 font-mono">{{ $totalDoctores }}</p>
+        </div>
+        <div class="p-3 rounded-lg bg-clinic-cyan-pastel/60 text-clinic-accent border border-clinic-accent/20">
+            <i class="fa-solid fa-user-md text-xl w-6 text-center"></i>
+        </div>
+    </div>
 
-                <div class="bg-[#1A1A1E] border bg-slate-200 rounded-xl p-5 shadow-lg flex items-center justify-between">
-                    <div>
-                        <p class="text-xs font-semibold uppercase tracking-wider text-gray-500">Flujo de Caja Total</p>
-                        <p class="text-3xl font-bold text-emerald-400 mt-1 font-mono">S/. {{ number_format($ingresosCaja, 2) }}</p>
-                    </div>
-                    <div class="p-3 bg-slate-200 text-emerald-400 rounded-lg border border-emerald-400/20">
-                        <i class="fa-solid fa-wallet text-xl w-6 text-center"></i>
-                    </div>
-                </div>
-            </div>
+    <!-- Tarjeta: Citas Pendientes -->
+    <div class="clinic-stat-card flex items-center justify-between p-5 bg-white rounded-xl border border-clinic-turquoise-pastel/50 shadow-sm hover:shadow-md transition-all duration-300">
+        <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-clinic-muted">Citas Pendientes</p>
+            <p class="text-3xl font-bold text-clinic-navy mt-1 font-mono">{{ $citasPendientes }}</p>
+        </div>
+        <div class="p-3 rounded-lg bg-amber-100 text-amber-700 border border-amber-300/40">
+            <i class="fa-solid fa-calendar-check text-xl w-6 text-center"></i>
+        </div>
+    </div>
+
+    <!-- Tarjeta: Flujo de Caja Total -->
+    <div class="clinic-stat-card flex items-center justify-between p-5 bg-white rounded-xl border border-clinic-turquoise-pastel/50 shadow-sm hover:shadow-md transition-all duration-300">
+        <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-clinic-muted">Flujo de Caja Total</p>
+            <p class="text-2xl sm:text-3xl font-bold text-emerald-600 mt-1 font-mono">S/. {{ number_format($ingresosCaja, 2) }}</p>
+        </div>
+        <div class="p-3 rounded-lg bg-emerald-100 text-emerald-700 border border-emerald-300/40">
+            <i class="fa-solid fa-wallet text-xl w-6 text-center"></i>
+        </div>
+    </div>
+
+</div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-                <div class="bg-[#1A1A1E] border bg-slate-200 rounded-xl p-6 shadow-xl space-y-4">
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-[#D4AF37] border-b border-[#3A3A40]/60 pb-2">
+                <div class="clinic-dashboard-panel space-y-4">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-clinic-navy border-b border-clinic-turquoise-pastel/60 pb-2">
                         Accesos Rápidos
                     </h4>
                     <div class="grid grid-cols-1 gap-3">
-                        <a href="{{ route('citas.index') }}" class="btn bg-slate-200 hover:bg-slate-400 text-black border-none justify-start gap-3 w-full group">
-                            <i class="fa-solid fa-calendar text-[#D4AF37] group-hover:scale-110 transition-transform"></i>
+                        <a href="{{ route('citas.index') }}" class="btn bg-clinic-mint hover:bg-clinic-cyan-pastel text-clinic-navy border border-clinic-turquoise-pastel/50 justify-start gap-3 w-full group">
+                            <i class="fa-solid fa-calendar text-clinic-accent group-hover:scale-110 transition-transform"></i>
                             <span>Gestionar Citas Médicas</span>
                         </a>
-                        <a href="{{ route('pacientes.index') }}" class="btn bg-slate-200 hover:bg-slate-400 text-black border-none justify-start gap-3 w-full group">
-                            <i class="fa-solid fa-users text-[#D4AF37] group-hover:scale-110 transition-transform"></i>
+                        <a href="{{ route('pacientes.index') }}" class="btn bg-clinic-mint hover:bg-clinic-cyan-pastel text-clinic-navy border border-clinic-turquoise-pastel/50 justify-start gap-3 w-full group">
+                            <i class="fa-solid fa-users text-clinic-accent group-hover:scale-110 transition-transform"></i>
                             <span>Padrón de Pacientes</span>
                         </a>
-                        <a href="{{ url('/citas/recetas') }}" class="btn bg-slate-200 hover:bg-slate-400 text-black border-none justify-start gap-3 w-full group">
-                            <i class="fa-solid fa-file-prescription text-[#D4AF37] group-hover:scale-110 transition-transform"></i>
+                        <a href="{{ url('/citas/recetas') }}" class="btn bg-clinic-mint hover:bg-clinic-cyan-pastel text-clinic-navy border border-clinic-turquoise-pastel/50 justify-start gap-3 w-full group">
+                            <i class="fa-solid fa-file-prescription text-clinic-accent group-hover:scale-110 transition-transform"></i>
                             <span>Historial de Recetas</span>
                         </a>
-                        <a href="{{ url('/citas/pagos') }}" class="btn bg-slate-200 hover:bg-slate-400 text-black border-none justify-start gap-3 w-full group">
-                            <i class="fa-solid fa-file-invoice-dollar text-[#D4AF37] group-hover:scale-110 transition-transform"></i>
+                        <a href="{{ url('/citas/pagos') }}" class="btn bg-clinic-mint hover:bg-clinic-cyan-pastel text-clinic-navy border border-clinic-turquoise-pastel/50 justify-start gap-3 w-full group">
+                            <i class="fa-solid fa-file-invoice-dollar text-clinic-accent group-hover:scale-110 transition-transform"></i>
                             <span>Auditoría de Caja (Pagos)</span>
                         </a>
                     </div>
@@ -109,41 +112,61 @@
                         ->get();
                 @endphp
 
-                <div class="lg:col-span-2 bg-[#1A1A1E] border bg-slate-200 rounded-xl p-6 shadow-xl flex flex-col justify-between">
+                <div class="lg:col-span-2 clinic-dashboard-panel flex flex-col justify-between">
                     <div>
-                        <h4 class="text-sm font-bold uppercase tracking-wider text-[#D4AF37] border-b border-[#3A3A40]/60 pb-2 mb-4">
+                        <h4 class="text-sm font-bold uppercase tracking-wider text-clinic-navy border-b border-clinic-turquoise-pastel/60 pb-2 mb-4">
                             Próximas Consultas en Agenda
                         </h4>
 
                         <div class="space-y-3">
                             @forelse($proximasCitas as $cita)
-                                <div class="flex items-center justify-between p-3 bg-slate-200 rounded-lg border-l-4 border-[#D4AF37]/60">
+                                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-3 bg-clinic-mint/80 rounded-lg border-l-4 border-clinic-accent">
                                     <div class="text-xs">
-                                        <p class="font-bold text-black text-sm">{{ $cita->p_nom }} {{ $cita->p_ape }}</p>
-                                        <p class="text-gray-500 mt-0.5">Médico: Dr. {{ $cita->d_ape }}</p>
+                                        <p class="font-bold text-clinic-ink text-sm">{{ $cita->p_nom }} {{ $cita->p_ape }}</p>
+                                        <p class="text-clinic-muted mt-0.5">Médico: Dr. {{ $cita->d_ape }}</p>
                                     </div>
-                                    <div class="text-right text-xs">
-                                        <span class="badge bg-[#1A1A1E] border border-[#3A3A40] text-gray-300 font-mono p-2">
+                                    <div class="text-xs">
+                                        <span class="badge bg-clinic-navy text-white font-mono border-0 p-2">
                                             {{ \Carbon\Carbon::parse($cita->fecha)->format('d/m') }} — {{ \Carbon\Carbon::parse($cita->hora)->format('H:i') }}
                                         </span>
                                     </div>
                                 </div>
                             @empty
-                                <div class="text-center py-6 text-xs text-gray-500 italic">
-                                    <i class="fa-solid fa-calendar-day text-lg mb-2 block text-gray-600"></i>
+                                <div class="text-center py-6 text-xs text-clinic-muted italic">
+                                    <i class="fa-solid fa-calendar-day text-lg mb-2 block text-clinic-accent/50"></i>
                                     No hay citas pendientes programadas para los próximos días.
                                 </div>
                             @endforelse
                         </div>
                     </div>
 
-                    <div class="text-right text-[10px] text-gray-600 font-mono mt-4 pt-2 border-t bg-slate-200">
+                    <div class="text-right text-[10px] text-clinic-muted font-mono mt-4 pt-2 border-t border-clinic-turquoise-pastel/40">
                         MEDACARE v12.0 // CHIMBOTE, PERÚ
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
+    <style>
+        /* Estilo Base: Celulares pequeños (1 columna) */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1.25rem; /* Equivalente a gap-5 de Tailwind */
+        }
+
+        /* Pantallas Medianas (sm): Tablets en adelante (2 columnas) */
+        @media (min-width: 530px) {
+            .card-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* Pantallas de Escritorio (lg): Laptops y Monitores (4 columnas) */
+        @media (min-width: 1024px) {
+            .card-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+    </style>
 </x-app-layout>

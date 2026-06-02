@@ -1,17 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Appointment Details') }} #{{ $cita->id }}
+            <h2 class="font-semibold text-xl leading-tight">
+                <i class="fa-solid fa-calendar-check text-clinic-accent"></i> {{ __('Appointment Details') }} #{{ $cita->id }}
             </h2>
             <div class="flex flex-wrap gap-2">
-                <a href="{{ route('citas.edit', $cita->id) }}" class="btn btn-info btn-sm">{{ __('Edit / Close consultation') }}</a>
-                <a href="{{ route('citas.index') }}" class="btn btn-ghost btn-sm">{{ __('Back') }}</a>
+                <a href="{{ route('citas.edit', $cita->id) }}" class="btn btn-primary btn-sm">{{ __('Edit / Close consultation') }}</a>
+                <a href="{{ route('citas.index') }}" class="btn btn-ghost btn-sm border border-clinic-turquoise-pastel/60">{{ __('Back') }}</a>
             </div>
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-8 bg-white">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <x-flash-success />
 
@@ -40,16 +40,25 @@
                 <x-detail-card :title="__('Prescription')">
                     @php $receta = $cita->recetas->first(); @endphp
                     @if ($receta)
-                        <dl class="space-y-3 text-sm">
-                            <div><span class="font-semibold text-gray-600">{{ __('Description') }}:</span> {{ $receta->descripcion ?? '—' }}</div>
-                            <div><span class="font-semibold text-gray-600">{{ __('Medications') }}:</span> {{ $receta->medicamentos ?? '—' }}</div>
-                            <div><span class="font-semibold text-gray-600">{{ __('Recommendations') }}:</span> {{ $receta->recomendaciones ?? '—' }}</div>
+                        <dl class="space-y-4 text-sm">
+                            <div class="clinic-modal-section">
+                                <span class="font-semibold text-clinic-navy">{{ __('Description') }}:</span>
+                                <p class="mt-1 text-clinic-ink">{{ $receta->descripcion ?? '—' }}</p>
+                            </div>
+                            <div class="clinic-modal-section">
+                                <span class="font-semibold text-clinic-navy">{{ __('Medications') }}:</span>
+                                <p class="mt-1 text-clinic-ink">{{ $receta->medicamentos ?? '—' }}</p>
+                            </div>
+                            <div class="clinic-modal-section">
+                                <span class="font-semibold text-clinic-navy">{{ __('Recommendations') }}:</span>
+                                <p class="mt-1 text-clinic-ink">{{ $receta->recomendaciones ?? '—' }}</p>
+                            </div>
                         </dl>
-                        <div class="mt-4">
-                            <a href="{{ route('citas.recetas.edit', $receta->id) }}" class="btn btn-info btn-sm">{{ __('Edit prescription') }}</a>
+                        <div class="mt-5">
+                            <a href="{{ route('citas.recetas.edit', $receta->id) }}" class="btn btn-primary btn-sm">{{ __('Edit prescription') }}</a>
                         </div>
                     @else
-                        <p class="text-sm text-gray-500">{{ __('No prescription yet. Mark the appointment as ATENDIDO to register one.') }}</p>
+                        <p class="text-sm text-clinic-muted">{{ __('No prescription yet. Mark the appointment as ATENDIDO to register one.') }}</p>
                     @endif
                 </x-detail-card>
 
@@ -57,21 +66,23 @@
                     @php $pago = $cita->pagos->first(); @endphp
                     @if ($pago)
                         <dl class="space-y-3 text-sm">
-                            <div><span class="font-semibold text-gray-600">{{ __('Amount') }}:</span> {{ number_format((float) $pago->monto, 2) }}</div>
-                            <div><span class="font-semibold text-gray-600">{{ __('Payment Date') }}:</span> {{ $pago->fecha_pago ?? '—' }}</div>
-                            <div><span class="font-semibold text-gray-600">{{ __('Method') }}:</span> {{ $pago->metodo_pago ?? '—' }}</div>
-                            <div>
-                                <span class="font-semibold text-gray-600">{{ __('Status') }}:</span>
-                                @if ($pago->estado === 'PAGADO')
-                                    <span class="badge badge-success">{{ $pago->estado }}</span>
-                                @else
-                                    <span class="badge badge-error">{{ $pago->estado }}</span>
-                                @endif
+                            <x-detail-field :label="__('Amount')">{{ number_format((float) $pago->monto, 2) }}</x-detail-field>
+                            <x-detail-field :label="__('Payment Date')">{{ $pago->fecha_pago ?? '—' }}</x-detail-field>
+                            <x-detail-field :label="__('Method')">{{ $pago->metodo_pago ?? '—' }}</x-detail-field>
+                            <div class="rounded-lg bg-clinic-mint/80 border border-clinic-turquoise-pastel/50 px-4 py-3">
+                                <dt class="text-xs font-medium uppercase tracking-wide text-clinic-muted">{{ __('Status') }}</dt>
+                                <dd class="mt-1">
+                                    @if ($pago->estado === 'PAGADO')
+                                        <span class="badge badge-success">{{ $pago->estado }}</span>
+                                    @else
+                                        <span class="badge badge-error">{{ $pago->estado }}</span>
+                                    @endif
+                                </dd>
                             </div>
                         </dl>
-                        <p class="mt-4 text-xs text-gray-500">{{ __('Payments cannot be edited. Void only from cash audit (admin).') }}</p>
+                        <p class="mt-4 text-xs text-clinic-muted">{{ __('Payments cannot be edited. Void only from cash audit (admin).') }}</p>
                     @else
-                        <p class="text-sm text-gray-500">{{ __('No payment registered yet.') }}</p>
+                        <p class="text-sm text-clinic-muted">{{ __('No payment registered yet.') }}</p>
                     @endif
                 </x-detail-card>
             </div>

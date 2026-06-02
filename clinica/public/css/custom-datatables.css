@@ -30,9 +30,40 @@
 }
 
 .dt-search input:focus {
-    border-color: #3b82f6 !important;
-    /* Azul focus */
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+    border-color: #0891b2 !important;
+    box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.25) !important;
+}
+
+/* Tabla clínica: mantener tipografía compacta tras init DataTables */
+.dt-container table.clinic-data-table,
+.dt-container #tabla-clinica {
+    font-size: 0.75rem !important;
+}
+
+.dt-container table.clinic-data-table thead th,
+.dt-container #tabla-clinica thead th {
+    background: linear-gradient(180deg, #1e3a5f 0%, #3b0764 100%) !important;
+    color: #ffffff !important;
+    font-size: 0.6875rem !important;
+    padding: 0.55rem 0.4rem !important;
+}
+
+.dt-container table.clinic-data-table tbody td,
+.dt-container #tabla-clinica tbody td {
+    font-size: 0.75rem !important;
+    padding: 0.45rem 0.4rem !important;
+}
+
+.dt-container .dt-info,
+.dt-container .dt-length label,
+.dt-container .dt-search label {
+    font-size: 0.8125rem !important;
+    color: #475569 !important;
+}
+
+.dt-container .dt-paging .dt-paging-button {
+    font-size: 0.75rem !important;
+    padding: 0.25rem 0.5rem !important;
 }
 
 /* 3. Darle espacio a la fila superior para que no se pegue con la tabla */
@@ -68,10 +99,8 @@
 .dt-length select:focus,
 .dt-container .dt-length select:focus {
     outline: none !important;
-    border-color: #6366f1 !important;
-    /* Un tono Indigo/Azul corporativo */
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important;
-    /* Destello suave */
+    border-color: #0891b2 !important;
+    box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.25) !important;
 }
 
 /* Eliminar cualquier caja o borde extra que Bulma intente meter alrededor */
@@ -105,9 +134,8 @@
 
 /* Forzamos el focus limpio estilo Tailwind */
 .dt-length select:focus {
-    border-color: #6366f1 !important;
-    /* Indigo */
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important;
+    border-color: #0891b2 !important;
+    box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.25) !important;
 }
 
 
