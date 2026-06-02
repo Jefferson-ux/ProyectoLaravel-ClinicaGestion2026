@@ -1,6 +1,6 @@
-# MediaCare - Sistema de Gestión Clínica Integral 🏥
+# MedaCare - Sistema de Gestión Clínica Integral 🏥
 
-**MediaCare** es una plataforma web moderna para la optimización y administración de centros médicos. El sistema centraliza el control de especialidades, personal médico, expedientes de pacientes, programación de citas, emisión de recetas y flujos de pago, ofreciendo una interfaz reactiva de alta velocidad.
+**MedaCare** es una plataforma web moderna para la optimización y administración de centros médicos. El sistema centraliza el control de especialidades, personal médico, expedientes de pacientes, programación de citas, emisión de recetas y flujos de pago, ofreciendo una interfaz reactiva de alta velocidad.
 
 ---
 
