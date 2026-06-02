@@ -42,7 +42,8 @@
                                         <td>{{ \Illuminate\Support\Str::limit($receta->medicamentos ?? '—', 40) }}</td>
                                         <td><span class="badge badge-outline">{{ $receta->cita_estado }}</span></td>
                                         <td class="whitespace-nowrap space-x-1">
-                                            <a href="{{ route('citas.recetas.edit', $receta->id) }}" class="btn btn-info btn-xs">{{ __('Edit') }}</a>
+                                            <a href="{{ route('citas.recetas.edit', $receta->id) }}" class="btn btn-info btn-xs" title="Editar">
+        <i class="fa-solid fa-pen-to-square"></i></a>
                                             <a href="{{ route('citas.show', $receta->id_cita) }}" class="btn btn-ghost btn-xs">{{ __('Appointment') }}</a>
                                         </td>
                                     </tr>

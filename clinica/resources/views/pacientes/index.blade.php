@@ -6,7 +6,7 @@
             </h2>
             <div class="flex flex-wrap gap-2">
                 <x-toggle-inactivos :index-route="route('pacientes.index')" />
-                <a href="{{ route('pacientes.create') }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('pacientes.create') }}" class="btn btn-primary btn-sm bg-gray-300 hover:bg-gray-100">
                     {{ __('Add Patient') }}
                 </a>
             </div>

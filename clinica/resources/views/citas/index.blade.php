@@ -7,7 +7,7 @@
             <div class="flex flex-wrap gap-2">
                 <a href="{{ route('citas.recetas') }}" class="btn btn-outline btn-sm">{{ __('All prescriptions') }}</a>
                 <a href="{{ route('citas.pagos') }}" class="btn btn-outline btn-sm">{{ __('Cash audit') }}</a>
-                <a href="{{ route('citas.create') }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('citas.create') }}" class="btn btn-primary btn-sm bg-gray-300 hover:bg-gray-100">
                     {{ __('Schedule Appointment') }}
                 </a>
             </div>
@@ -61,7 +61,7 @@
                                             <span class="badge {{ $badgeClass }}">{{ $cita->estado }}</span>
                                         </td>
                                         <td class="space-x-1 whitespace-nowrap">
-                                            <button
+                                            <!-- <button
                                                 type="button"
                                                 class="btn btn-ghost btn-xs"
                                                 @click="$dispatch('open-receta-pago', {
@@ -77,12 +77,14 @@
                                                     pago_estado: @js($pago?->estado),
                                                     show_url: @js(route('citas.show', $cita->id)),
                                                 })"
-                                            >{{ __('Summary') }}</button>
-                                            <a href="{{ route('citas.show', $cita->id) }}" class="btn btn-ghost btn-xs">{{ __('View') }}</a>
-                                            <a href="{{ route('citas.edit', $cita->id) }}" class="btn btn-info btn-xs">{{ __('Edit') }}</a>
+                                            >{{ __('Summary') }}</button> -->
+                                            <a href="{{ route('citas.show', $cita->id) }}" class="btn btn-ghost btn-xs"><i class="fa-solid fa-eye"></i></a>
+                                            <a href="{{ route('citas.edit', $cita->id) }}" class="btn btn-info btn-xs" title="Editar">
+        <i class="fa-solid fa-pen-to-square"></i></a>
                                             <x-confirm-deactivate
                                             :action="route('citas.destroy', $cita->id)"
-                                            :label="__('Cancel')"
+                                            title="Cancelar"
+                                            :label="'✕'"
                                             :confirm-label="__('Cancel appointment')"
                                             class="inline"
                                             :message="__('The appointment will be marked as CANCELADO and associated payments will be voided (ANULADO).')"
