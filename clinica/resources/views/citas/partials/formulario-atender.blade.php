@@ -47,7 +47,7 @@
         <x-form-field :label="__('Payment Method')" for="metodo_pago">
             <select id="metodo_pago" name="metodo_pago"
                 class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2.5 px-3">
-                <option value="">{{ __('Select method') }}</option>
+                <option value="">{{ __('Select payment method') }}</option>
                 <option value="CASH" {{ old('metodo_pago', $pago?->metodo_pago) === 'CASH' ? 'selected' : '' }}>{{ __('Cash') }}</option>
                 <option value="CARD" {{ old('metodo_pago', $pago?->metodo_pago) === 'CARD' ? 'selected' : '' }}>{{ __('Card') }}</option>
                 <option value="TRANSFER" {{ old('metodo_pago', $pago?->metodo_pago) === 'TRANSFER' ? 'selected' : '' }}>{{ __('Transfer') }}</option>

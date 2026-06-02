@@ -78,7 +78,7 @@
                                                     show_url: @js(route('citas.show', $cita->id)),
                                                 })"
                                             >{{ __('Summary') }}</button> -->
-                                            <a href="{{ route('citas.show', $cita->id) }}" class="btn btn-ghost btn-xs"><i class="fa-solid fa-eye"></i></a>
+                                            <a href="{{ route('citas.show', $cita->id) }}" title="Ver detalles" class="btn btn-ghost btn-xs"><i class="fa-solid fa-eye"></i></a>
                                             <a href="{{ route('citas.edit', $cita->id) }}" class="btn btn-info btn-xs" title="Editar">
         <i class="fa-solid fa-pen-to-square"></i></a>
                                             <x-confirm-deactivate
