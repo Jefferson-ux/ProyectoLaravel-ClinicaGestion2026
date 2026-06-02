@@ -57,6 +57,7 @@
                                         </td>
                                         <td class="whitespace-nowrap space-x-1">
                                             <a href="{{ route('citas.show', $pago->id_cita) }}" class="btn btn-ghost btn-xs">{{ __('Appointment') }}</a>
+
                                             @if ($pago->estado === 'PAGADO' && auth()->user()->rol === 'admin')
                                                 <x-confirm-deactivate
                                                     :action="route('citas.pagos.anular', $pago->id)"
