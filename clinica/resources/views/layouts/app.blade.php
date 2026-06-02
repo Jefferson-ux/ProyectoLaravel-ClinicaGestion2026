@@ -38,6 +38,8 @@
         @stack('styles')
     </head>
     <body class="font-sans antialiased text-clinic-ink">
+        <x-page-loader />
+
         <div class="clinic-app-shell min-h-screen">
             <livewire:layout.navigation />
 
@@ -74,13 +76,22 @@
         <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.colVis.min.js"></script>
 
         <script>
-function initDataTable() {
+window.initClinicaDataTable = function initDataTable() {
     const table = document.getElementById('tabla-clinica');
 
-    if (!table || typeof DataTable === 'undefined' || $.fn.DataTable.isDataTable('#tabla-clinica')) {
-        return;
+    if (!table || typeof DataTable === 'undefined') {
+        return Promise.resolve();
     }
 
+    if ($.fn.DataTable.isDataTable('#tabla-clinica')) {
+        return Promise.resolve();
+    }
+
+    return new Promise((resolve) => {
+    const finish = () => requestAnimationFrame(() => resolve());
+    const safetyTimer = setTimeout(finish, 8000);
+
+    try {
     new DataTable('#tabla-clinica', {
         theme: 'tailwindcss',
 
@@ -174,11 +185,17 @@ function initDataTable() {
                 last: '>>'
             }
         },
+        initComplete: function () {
+            clearTimeout(safetyTimer);
+            finish();
+        },
     });
-}
-
-document.addEventListener('DOMContentLoaded', initDataTable);
-document.addEventListener('livewire:navigated', initDataTable);
+    } catch (e) {
+        clearTimeout(safetyTimer);
+        finish();
+    }
+    });
+};
 </script>
 
         @stack('scripts')
