@@ -61,26 +61,7 @@
                                     </td>
                                     <td class="whitespace-nowrap">
                                         <div class="flex flex-wrap items-center gap-0.5">
-                                            <button
-                                                type="button"
-                                                class="btn btn-ghost btn-xs text-clinic-navy hover:bg-clinic-cyan-pastel"
-                                                title="{{ __('Summary') }}"
-                                                @click="$dispatch('open-receta-pago', {
-                                                    id: {{ $cita->id }},
-                                                    paciente: @js(trim(($cita->paciente?->nombres ?? '') . ' ' . ($cita->paciente?->apellidos ?? ''))),
-                                                    doctor: @js(trim(($cita->doctor?->nombres ?? '') . ' ' . ($cita->doctor?->apellidos ?? ''))),
-                                                    descripcion: @js($receta?->descripcion),
-                                                    medicamentos: @js($receta?->medicamentos),
-                                                    recomendaciones: @js($receta?->recomendaciones),
-                                                    monto: @js($pago?->monto),
-                                                    fecha_pago: @js($pago?->fecha_pago),
-                                                    metodo_pago: @js($pago?->metodo_pago),
-                                                    pago_estado: @js($pago?->estado),
-                                                    show_url: @js(route('citas.show', $cita->id)),
-                                                })"
-                                            >
-                                                <i class="fa-solid fa-file-lines"></i>
-                                            </button>
+
                                             <a href="{{ route('citas.show', $cita->id) }}" title="{{ __('View details') }}" class="btn btn-ghost btn-xs text-clinic-accent hover:bg-clinic-cyan-pastel">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
@@ -106,6 +87,8 @@
             </div>
         </div>
     </div>
+
+
 
     @include('citas.partials.ver-receta-pago')
 </x-app-layout>

@@ -2,7 +2,7 @@
     'action',
     'label' => '✕',
     'message' => null,
-    'confirmLabel' => null,
+    'confirmLabel' => 'Confirmar',
     'method' => 'DELETE',
 ])
 
@@ -18,7 +18,7 @@
     x-data=""
     x-on:click="$dispatch('open-modal', '{{ $modalId }}')"
 >
-    <span class="btn bg-rose-600 hover:bg-rose-700 border-none btn-xs text-white shadow-sm shadow-rose-600/20 hover:shadow-md hover:shadow-rose-600/40 rounded-md transition-all duration-200 hover:scale-105 active:scale-95 inline-flex items-center justify-center">
+    <span style="width:27px" class="btn bg-rose-600 hover:bg-rose-700 border-none btn-xs text-white shadow-sm shadow-rose-600/20 hover:shadow-md hover:shadow-rose-600/40 rounded-md transition-all duration-200 hover:scale-105 active:scale-95 inline-flex items-center justify-center">
         {{ $slot->isEmpty() ? $buttonLabel : $slot }}
     </span>
 </button>
@@ -37,6 +37,7 @@
 <div class="mt-6 flex justify-end gap-3">
     <button
         type="button"
+
         class="border-none bg-transparent p-0 m-0 outline-none focus:outline-none flex items-center"
         x-on:click="$dispatch('close-modal', '{{ $modalId }}')"
     >
@@ -50,6 +51,7 @@
         @method($method)
         <button
             type="submit"
+
             class="border-none bg-transparent p-0 m-0 outline-none focus:outline-none flex items-center"
         >
             <span class="btn bg-rose-600 hover:bg-rose-700 border-none btn-sm text-white shadow-md shadow-rose-600/20 hover:shadow-lg hover:shadow-rose-600/40 rounded-md transition-all duration-200 hover:scale-105 active:scale-95 inline-flex items-center justify-center font-semibold px-4">
