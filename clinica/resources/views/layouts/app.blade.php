@@ -135,16 +135,16 @@ window.initClinicaDataTable = function initDataTable() {
 
                             $(win.document.body).prepend(`
                                 <div style="text-align: center; margin-bottom: 25px; font-family: sans-serif; border-bottom: 2px solid #06b6d4; padding-bottom: 12px;">
-                                    <h1 style="margin: 0; color: #1a1a1e; font-size: 24px; font-weight: bold; letter-spacing: 0.5px;">MEDACARE — CONTROL INTERNO</h1>
-                                    <p style="margin: 4px 0 0 0; color: #4b5563; font-size: 13px;">Chimbote, Perú // Reporte Oficial de Auditoría Integrado</p>
-                                    <p style="margin: 3px 0 0 0; color: #9ca3af; font-size: 10px; font-family: monospace;">Impreso el: ${new Date().toLocaleDateString()} a las ${new Date().toLocaleTimeString()}</p>
+                                    <h1 style="margin: 0; color: #1a1a1e; font-size: 18px; font-weight: bold; letter-spacing: 0.5px;">MEDACARE — CONTROL INTERNO</h1>
+                                    <p style="margin: 4px 0 0 0; color: #4b5563; font-size: 14px;">Chimbote, Perú // Reporte Oficial de Auditoría Integrado</p>
+                                    <p style="margin: 3px 0 0 0; color: #9ca3af; font-size: 11px; font-family: monospace;">Impreso el: ${new Date().toLocaleDateString()} a las ${new Date().toLocaleTimeString()}</p>
                                 </div>
                             `);
 
                             const $table = $(win.document.body).find('table');
-                            $table.css({ 'border-collapse': 'collapse', 'width': '100%', 'margin-top': '10px' });
-                            $table.find('thead th').css({ 'background-color': '#f8fafc', 'color': '#0e7490', 'font-weight': 'bold', 'border': '1px solid #cbd5e1', 'padding': '10px', 'text-align': 'left' });
-                            $table.find('tbody td').css({ 'border': '1px solid #e2e8f0', 'padding': '8px' });
+                            $table.css({ 'border-collapse': 'collapse', 'width': '100%', 'margin-top': '6px' });
+                            $table.find('thead th').css({ 'background-color': '#f8fafc', 'color': '#0e7490', 'font-weight': 'bold', 'border': '1px solid #cbd5e1', 'padding': '5px', 'text-align': 'left', 'font-size': '12px' });
+                            $table.find('tbody td').css({ 'border': '1px solid #e2e8f0', 'padding': '5px', 'font-size': '11px' });
 
                             $table.find('tr').each(function() {
                                 $(this).find('td:last, th:last').remove();

@@ -1,180 +1,86 @@
 @import "tailwindcss";
 
 /* ======================================================
-   CORRECCIÓN GLOBAL PARA EL SELECTOR Y BUSCADOR (TAILWIND)
+   ESCALA PASTEL CON BORDES REDONDEADOS PREMIUM (ROUNDED)
    ====================================================== */
 
-/* 1. Arreglar el selector de cantidad de registros (pageLength) */
-.dt-length select {
-    min-width: 70px !important;
-    padding: 6px 32px 6px 12px !important;
-    font-size: 0.875rem !important;
-    line-height: 1.25rem !important;
-    border: 1px solid #cbd5e1 !important;
-    /* Gris suave border-slate-300 */
-    border-radius: 0.375rem !important;
-    /* Rounded-md */
-    background-color: #ffffff !important;
-    display: inline-block !important;
-}
-
-
-/* 2. Arreglar el cuadro de búsqueda (Search input) */
-.dt-search input {
-    padding: 6px 12px !important;
-    font-size: 0.875rem !important;
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 0.375rem !important;
-    background-color: #ffffff !important;
-    outline: none !important;
-}
-
-.dt-search input:focus {
-    border-color: #0891b2 !important;
-    box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.25) !important;
-}
-
-/* Tabla clínica: mantener tipografía compacta tras init DataTables */
-.dt-container table.clinic-data-table,
-.dt-container #tabla-clinica {
+/* Contenedor y Tabla: Redondeado de esquinas y bordes suaves */
+div.dt-container table.dataTable,
+div.dt-container table.clinic-data-table,
+#tabla-clinica {
     font-size: 0.75rem !important;
+    border-collapse: separate !important;
+    /* Crucial para que el border-radius funcione */
+    border-spacing: 0 !important;
+    border: 1px solid #ccfbf1 !important;
+    /* Borde exterior turquesa pastel */
+    border-radius: 0.5rem !important;
+    /* rounded-lg de Tailwind */
+    overflow: hidden !important;
+    /* Corta las esquinas rectas del fondo del header */
 }
 
-.dt-container table.clinic-data-table thead th,
-.dt-container #tabla-clinica thead th {
-    background: linear-gradient(180deg, #1e3a5f 0%, #3b0764 100%) !important;
-    color: #ffffff !important;
-    font-size: 0.6875rem !important;
-    padding: 0.55rem 0.4rem !important;
-}
-
-.dt-container table.clinic-data-table tbody td,
-.dt-container #tabla-clinica tbody td {
+/* Header: Gradiente Top-Down Lila Pastel con esquinas adaptadas */
+div.dt-container table.dataTable thead th,
+div.dt-container table.clinic-data-table thead th,
+#tabla-clinica thead th {
+    background: linear-gradient(180deg, #e0e7ff 0%, #c7d2fe 100%) !important;
+    color: #3730a3 !important;
+    /* Texto índigo oscuro para contraste perfecto */
     font-size: 0.75rem !important;
-    padding: 0.45rem 0.4rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    padding: 0.85rem 0.6rem !important;
+    border-bottom: 2px solid #99f6e4 !important;
+    /* Cierre turquesa pastel */
 }
 
-.dt-container .dt-info,
-.dt-container .dt-length label,
-.dt-container .dt-search label {
-    font-size: 0.8125rem !important;
-    color: #475569 !important;
+/* Asegurar el redondeado en las esquinas superiores del Header */
+div.dt-container table.dataTable thead tr:first-child th:first-child,
+#tabla-clinica thead tr:first-child th:first-child {
+    border-top-left-radius: 0.5rem !important;
 }
 
-.dt-container .dt-paging .dt-paging-button {
-    font-size: 0.75rem !important;
-    padding: 0.25rem 0.5rem !important;
+div.dt-container table.dataTable thead tr:first-child th:last-child,
+#tabla-clinica thead tr:first-child th:last-child {
+    border-top-right-radius: 0.5rem !important;
 }
 
-/* 3. Darle espacio a la fila superior para que no se pegue con la tabla */
-.dt-container .dt-layout-row:first-child {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    margin-bottom: 1rem !important;
-    width: 100% !important;
-}
-
-/* ======================================================
-   LIMPIEZA RADICAL DEL SELECTOR (CHAU OUTLINES RAROS)
-   ====================================================== */
-
-/* Quitar el borde negro tosco y limpiar dobles flechas de Bulma */
-.dt-length select,
-.dt-container .dt-length select {
-    outline: none !important;
-    box-shadow: none !important;
-    border: 1px solid #cbd5e1 !important;
-    /* Gris suave (border-slate-300) */
-    border-radius: 0.375rem !important;
-    /* rounded-md */
-    padding: 6px 32px 6px 12px !important;
+/* Filas IMPARES: Blanco puro */
+div.dt-container table.dataTable tbody tr:nth-child(odd) td,
+div.dt-container table.clinic-data-table tbody tr:nth-child(odd) td,
+#tabla-clinica tbody tr:nth-child(odd) td {
     background-color: #ffffff !important;
-    appearance: auto !important;
-    /* Fuerza la flecha limpia del sistema */
-    transition: border-color 0.2s, box-shadow 0.2s;
+    color: #334155 !important;
+    padding: 0.7rem 0.6rem !important;
+    border-bottom: 1px solid #f0fdfa !important;
 }
 
-/* Darle un efecto de enfoque moderno (estilo DaisyUI/Tailwind) */
-.dt-length select:focus,
-.dt-container .dt-length select:focus {
-    outline: none !important;
-    border-color: #0891b2 !important;
-    box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.25) !important;
+/* Franjas PARES: Turquesa/Menta Pastel muy suave */
+div.dt-container table.dataTable tbody tr:nth-child(even) td,
+div.dt-container table.clinic-data-table tbody tr:nth-child(even) td,
+#tabla-clinica tbody tr:nth-child(even) td {
+    background-color: #f0fdfa !important;
+    color: #334155 !important;
+    padding: 0.7rem 0.6rem !important;
+    border-bottom: 1px solid #f0fdfa !important;
 }
 
-/* Eliminar cualquier caja o borde extra que Bulma intente meter alrededor */
-.dt-length .select,
-.dt-length .select::after {
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    content: none !important;
-    /* Apaga la flecha clonada de Bulma */
+/* Asegurar el redondeado en las esquinas inferiores del último registro */
+div.dt-container table.dataTable tbody tr:last-child td:first-child,
+#tabla-clinica tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 0.5rem !important;
 }
 
-/* ======================================================
-   ANULAR OUTLINE Y AGRESIVIDAD DE BULMA EN EL SELECTOR
-   ====================================================== */
-
-/* Atacamos los estados de Bulma para obligarlo a soltar el control */
-.dt-length select,
-.dt-length .select select,
-.dt-length .select select:focus,
-.dt-length .select select:active {
-    outline: none !important;
-    border: 1px solid #cbd5e1 !important;
-    /* Gris suave de Tailwind */
-    box-shadow: none !important;
-    -webkit-appearance: auto !important;
-    /* Asegura la flecha limpia nativa */
-    -moz-appearance: auto !important;
-    appearance: auto !important;
+div.dt-container table.dataTable tbody tr:last-child td:last-child,
+#tabla-clinica tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 0.5rem !important;
 }
 
-/* Forzamos el focus limpio estilo Tailwind */
-.dt-length select:focus {
-    border-color: #0891b2 !important;
-    box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.25) !important;
-}
-
-
-
-/* ======================================================
-   DESACTIVAR LOS ESTILOS INTENSOS DE BULMA EN EL PADRE
-   ====================================================== */
-
-/* 1. Desarmamos al padre (.select) para que no meta bordes ni sombras */
-.dt-container .select {
-    display: inline-block !important;
-    height: auto !important;
-    width: auto !important;
-    padding: 0 !important;
-    background: transparent !important;
-    border: none !important;
-    margin: 0 15px;
-    position: relative;
-
-    &::before {
-        content: "⌵";
-        position: absolute;
-        background: rgba(255, 255, 255);
-        font-family: Arial, Helvetica, sans-serif;
-        color: black;
-        padding: 4px 6px;
-        font-size: 15px;
-        /* Un toque más pequeño para que sea sutil */
-        border-radius: 50px;
-        font-weight: 900;
-
-        /* 1. Lo mandamos a la derecha para que no tape el número */
-        right: 4px;
-        /* 2. Lo centramos verticalmente de forma matemática */
-        top: 45%;
-        transform: translateY(-50%);
-
-        /* 3. EL TRUCO CLAVE: El mouse ignora el círculo negro y abre el select */
-        pointer-events: none;
-        z-index: 10;
-    }
+/* Efecto Hover: Celeste Cielo Pastel equilibrado */
+div.dt-container table.dataTable tbody tr:hover td,
+div.dt-container table.clinic-data-table tbody tr:hover td,
+#tabla-clinica tbody tr:hover td {
+    background-color: #e0f2fe !important;
+    color: #0369a1 !important;
 }
